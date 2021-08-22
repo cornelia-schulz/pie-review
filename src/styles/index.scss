@@ -47,6 +47,15 @@ h4 {
   line-height: 3.2rem;
 }
 
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .button {
   background-color: $dark-cyan;
   border: none;
@@ -87,4 +96,9 @@ input {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
   }
+}
+
+#mapid, .leaflet-container {
+  height: calc(100vh - 100px);
+  width: 100vw;
 }

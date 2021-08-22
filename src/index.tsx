@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './styles/reset.scss';
+import './styles/react-leaflet-geosearch.scss';
 import './styles/index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
