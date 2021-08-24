@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Marker, Popup, useMap } from 'react-leaflet'
 // import cameraIcon from '../images/photo-camera.png'
 
-function LocationMarker({
-  // id,
-  // info,
-  // info_title,
-  // label,
-  // lat,
-  // lng,
-  // title,
-  // type
-}) {
+interface IProps {
+  id: number,
+  name: string,
+  street: string,
+  city: string,
+  county: string,
+  country: string,
+  longitude: number,
+  latitude: number
+}
+
+function LocationMarker(props:IProps) {
   const [position, setPosition] = useState(null)
   const L = require('leaflet')
 //   const cameraImageIcon = L.icon({
@@ -25,15 +27,15 @@ function LocationMarker({
 //   })
   const map = useMap()
 
-  // useEffect(() => {
-  //   map.locate().on('locationfound', function (e) {
-  //     const latlng = {
-  //       lat: lat,
-  //       lng: lng
-  //     }
-  //     setPosition(latlng)
-  //   })
-  // }, [lat, lng, map])
+  useEffect(() => {
+    map.locate().on('locationfound', function (e:React.ChangeEvent) {
+      const latlng = {
+        lat: props.latitude,
+        lng: props.longitude
+      }
+      setPosition(latlng)
+    })
+  }, [props.latitude, props.latitude, map])
 
   return position === null ? null : (
     // <Marker position={position} icon={cameraImageIcon}>
