@@ -39,7 +39,8 @@ const [shops, setShops] = useState([
 ]);
 
   return (
-      shops.map((shop, index) =>
+    <>
+      {shops.map((shop, index) =>
         <LocationMarker
           id={shop.id}
           name={shop.name}
@@ -51,7 +52,8 @@ const [shops, setShops] = useState([
           longitude={shop.longitude}
           latitude={shop.latitude}
         />
-      )
+      )}
+    </>
   )
 }
 

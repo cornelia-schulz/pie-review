@@ -1,5 +1,5 @@
-import { MapContainer, TileLayer } from 'react-leaflet'
-// import LocationMarkers from './LocationMarkers'
+import { MapContainer, TileLayer } from 'react-leaflet';
+import LocationMarkers from './LocationMarkers';
 // import HomeLocationMarker from './HomeLocationMarker'
 // import SearchControl from './SearchControl'
 // import { OpenStreetMapProvider } from 'react-leaflet-geosearch'
@@ -19,8 +19,8 @@ function Map() {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         /> */}
-        {/* <LocationMarkers />
-        <HomeLocationMarker />
+        <LocationMarkers />
+        {/* <HomeLocationMarker />
         <SearchControl
           provider={provider}
           showMarker={true}
