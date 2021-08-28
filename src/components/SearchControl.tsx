@@ -1,10 +1,6 @@
-// import { useEffect } from 'react'
-import { useMap } from 'react-leaflet'
-// import { GeoSearchControl } from 'leaflet-geosearch'
-
-// interface IProps
-//   extends FieldRenderProps<Date, HTMLElement>,
-//     FormFieldProps {}
+// import { useEffect } from 'react';
+import { useMap } from 'react-leaflet';
+// import { GeoSearchControl } from 'leaflet-geosearch';
 
 const SearchControl = () => {
     const map = useMap()

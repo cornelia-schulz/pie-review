@@ -47,9 +47,9 @@ function LocationMarker(props:IProps) {
     // <Marker position={position} icon={cameraImageIcon}>
     <Marker position={position}>
       <Popup>
-        {/* <h2>{title}</h2>
-        <h3>{info_title}</h3>
-        <p>{info}</p> */}
+        <h2>{props.name}</h2>
+        <h3>{props.street}</h3>
+        <p>{props.city}</p>
       </Popup>
     </Marker>
   )

@@ -1,10 +1,14 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import LocationMarkers from './LocationMarkers';
-// import HomeLocationMarker from './HomeLocationMarker'
-// import SearchControl from './SearchControl'
-// import { OpenStreetMapProvider } from 'react-leaflet-geosearch'
+// import SearchControl from './SearchControl';
+// import { OpenStreetMapProvider } from 'react-leaflet-geosearch';
+import { IShop } from '../models/shops';
 
-function Map() {
+interface IProps {
+  shops: IShop[]
+}
+
+function Map(props: IProps) {
     // const provider = OpenStreetMapProvider()
     return (
       <MapContainer
@@ -15,13 +19,8 @@ function Map() {
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        /> */}
-        <LocationMarkers />
-        {/* <HomeLocationMarker />
-        <SearchControl
+        <LocationMarkers shops={props.shops} />
+        {/* <SearchControl
           provider={provider}
           showMarker={true}
           showPopup={false}
@@ -32,7 +31,7 @@ function Map() {
           autoClose={false}
           searchLabel={"Enter a place name"}
           keepResult={true}
-        /> */}
+        />  */}
       </MapContainer>
     )
  }

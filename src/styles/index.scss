@@ -112,3 +112,16 @@ input {
 .leaflet-container {
   flex-basis: 40%;
 }
+
+.shops {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.shop-card {
+  border-bottom: 1px solid rgba($dark-cyan, 0.2);
+  border-top: 1px solid rgba($dark-cyan, 0.2);
+  margin-top: 1rem;
+  padding: 1rem 0;
+  width: 100%;
+}
