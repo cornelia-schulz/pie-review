@@ -2,9 +2,12 @@ import { useState } from 'react';
 import Header from '../components/Header';
 import Map from '../components/Map';
 import ShopCard from '../components/ShopCard';
+import { LocationContext } from '../hooks/useLocationContext';
+import { IPosition } from '../models/location';
 
 function Home () {
-  const [shops, setShops] = useState([
+  const [position, setPosition] = useState<IPosition | null>(null)
+  const [shops] = useState([
     {
       id: 123,
       name: 'Pies and Coffee',
@@ -41,7 +44,7 @@ function Home () {
   ]);
 
   return (
-    <div className="">
+    <LocationContext.Provider value= {{ position, setPosition }}>
       <Header />
       <main className="home">
         <article className="shops">
@@ -61,7 +64,7 @@ function Home () {
         </article>
         <Map shops={shops} />
       </main>
-    </div>
+    </LocationContext.Provider>
   )
 }
 

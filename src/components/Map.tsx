@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import LocationMarkers from './LocationMarkers';
 import SearchControl from './SearchControl';
+import LocationResolver from './LocationResolver';
 import { IShop } from '../models/shops';
 
 interface IProps {
@@ -10,13 +11,13 @@ interface IProps {
 function Map(props: IProps) {
   return (
     <MapContainer
-      center={{ lat: -43.5258654860019,
-      lng: 172.61722095547762 }}
+      center={{lat: -43.5258654860019, lon: 172.61722095547762}}
       zoom={11} scrollWheelZoom={false}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <LocationResolver />
       <LocationMarkers shops={props.shops} />
       <SearchControl
         showMarker={true}
@@ -33,4 +34,4 @@ function Map(props: IProps) {
   )
  }
 
- export default Map
+ export default Map;

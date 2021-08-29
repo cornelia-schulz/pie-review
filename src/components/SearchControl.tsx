@@ -6,7 +6,7 @@ import { ISearch } from '../models/search';
 
 const SearchControl = (search: ISearch) => {
   const provider = OpenStreetMapProvider();
-  const map = useMap()
+  const map = useMap();
   
   useEffect(() => {
     // @ts-ignore see https://github.com/smeijer/leaflet-geosearch#using-with-react-leaflet

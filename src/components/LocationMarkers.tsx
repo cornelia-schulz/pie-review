@@ -6,42 +6,6 @@ interface IProps {
 }
 
 function LocationMarkers(props: IProps) {
-// const [shops, setShops] = useState([
-//   {
-//     id: 123,
-//     name: 'Pies and Coffee',
-//     city: 'Christchurch',
-//     street: '290 Selwyn St',
-//     county: 'Canterbury',
-//     country: 'New Zealand',
-//     latitude: -43.549126911758606,
-//     longitude: 172.62206744255727,
-//     pies: []
-//   },
-//   {
-//     id: 124,
-//     name: 'The great pastry shop',
-//     city: 'Christchurch',
-//     street: 'Riverside Market',
-//     county: 'Canterbury',
-//     country: 'New Zealand',
-//     latitude: -43.533927237712405,
-//     longitude: 172.63397647139195,
-//     pies: []
-//   },
-//   {
-//     id: 125,
-//     name: 'Copenhagen Bakery',
-//     city: 'Christchurch',
-//     street: '409 Harewood Rd',
-//     county: 'Canterbury',
-//     country: 'New Zealand',
-//     latitude: -43.484311485809485,
-//     longitude: 172.57846588303863,
-//     pies: []
-//   }
-// ]);
-
   return (
     <>
       {props.shops.map((shop, index) =>

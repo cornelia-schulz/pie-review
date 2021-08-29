@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Marker, Popup, useMap } from 'react-leaflet'
+import React, { useEffect, useState } from 'react';
+import { Marker, Popup, useMap } from 'react-leaflet';
+import { IPosition } from '../models/location';
 // import cameraIcon from '../images/photo-camera.png'
 
 interface IProps {
@@ -13,14 +14,9 @@ interface IProps {
   latitude: number
 }
 
-interface IPosition {
-  lat: number,
-  lon: number
-}
-
 function LocationMarker(props:IProps) {
-  const [position, setPosition] = useState<IPosition | null>(null)
-  const L = require('leaflet')
+  const [position, setPosition] = useState<IPosition | null>(null);
+  // const L = require('leaflet');
   //let position = {lat:  30, lon: 50}
 //   const cameraImageIcon = L.icon({
 //     iconUrl: cameraIcon,
@@ -31,7 +27,7 @@ function LocationMarker(props:IProps) {
 //     shadowSize: null,
 //     shadowAnchor: null
 //   })
-  const map = useMap()
+  const map = useMap();
 
   useEffect(() => {
     map.locate().on('locationfound', function (e:React.ChangeEvent) {
@@ -55,4 +51,4 @@ function LocationMarker(props:IProps) {
   )
 }
 
-export default LocationMarker
+export default LocationMarker;
