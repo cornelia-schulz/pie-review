@@ -94,8 +94,15 @@ input {
 
   .searchbar-input {
     background-color: $cream;
+    border: 0.1rem solid $cream;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
+    padding-left: 1rem;
+
+    &:focus, &:focus-visible {
+      border-color: $dark-cyan;
+      outline: none;
+    }
   }
 }
 
@@ -115,7 +122,7 @@ input {
 
 .shops {
   flex-grow: 1;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .shop-card {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { KeyboardEvent, useState } from 'react';
 import logo from '../assets/pie-cyan-logo.png';
 import magnifier from '../assets/magnifying-glass-cream.png';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
@@ -16,6 +16,12 @@ function Header() {
     locationContext.setPosition({lon: results[0].x, lat: results[0].y});
   }
 
+  function handleKeyDown(e:KeyboardEvent) {
+    if (e.key === 'Enter') {
+      getLocation();
+    }
+  }
+
   return (
     <header className="header">
       <img src={logo} alt="pie review logo" className="logo" />
@@ -25,6 +31,7 @@ function Header() {
           id="location"
           name="location"
           onChange={e => setLocation(e.target.value)}
+          onKeyDown={handleKeyDown}
           type="text"
         />
         <button className="button" onClick={getLocation}>
