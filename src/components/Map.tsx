@@ -11,7 +11,7 @@ interface IProps {
 function Map(props: IProps) {
   return (
     <MapContainer
-      center={{lat: -43.5258654860019, lon: 172.61722095547762}}
+    center={{lat: -43.5258654860019, lng: 172.61722095547762}}
       zoom={11} scrollWheelZoom={false}
     >
       <TileLayer

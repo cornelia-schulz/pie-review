@@ -4,22 +4,23 @@ import { useLocationContext } from '../hooks/useLocationContext';
 import { IPosition } from '../models/location';
 
 function LocationResolver() {
-  const [position, setPosition] = useState<IPosition | null>({lat: -43.5258654860019, lon: 172.61722095547762});
+  const [position, setPosition] = useState<IPosition | null>({lat: -43.5258654860019, lng: 172.61722095547762});
   const map = useMap();
-  const location = useLocationContext();
+  const locationContext = useLocationContext();
   
   useEffect(() => {
     map.locate().on('locationfound', function (e:React.ChangeEvent) {
-      if (location && location.position) {
+      if (locationContext && locationContext.position) {
         const latlng = {
-          lat: location.position.lat,
-          lon: location.position.lon
+          lat: locationContext.position.lat,
+          lng: locationContext.position.lng
         }
+        locationContext.setBounds = map.getBounds();
         setPosition(latlng);
         map.flyTo(latlng, map.getZoom());
       }
     })
-  }, [map, location, location.position])
+  }, [map, locationContext, locationContext.position])
 
   return position === null ? null : (
     <Marker position={position} />

@@ -6,5 +6,10 @@ export interface ILocation {
 
 export interface IPosition {
   lat: number,
-  lon: number
+  lng: number
+}
+
+export interface IBounds {
+  _northEast: IPosition,
+  _southWest: IPosition
 }

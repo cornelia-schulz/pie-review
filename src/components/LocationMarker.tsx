@@ -17,7 +17,7 @@ interface IProps {
 function LocationMarker(props:IProps) {
   const [position, setPosition] = useState<IPosition | null>(null);
   // const L = require('leaflet');
-  //let position = {lat:  30, lon: 50}
+  //let position = {lat:  30, lng: 50}
 //   const cameraImageIcon = L.icon({
 //     iconUrl: cameraIcon,
 //     iconSize: [33,32],
@@ -33,7 +33,7 @@ function LocationMarker(props:IProps) {
     map.locate().on('locationfound', function (e:React.ChangeEvent) {
       const latlng = {
         lat: props.latitude,
-        lon: props.longitude
+        lng: props.longitude
       }
       setPosition(latlng)
     })

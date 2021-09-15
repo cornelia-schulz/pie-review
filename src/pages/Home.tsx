@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Map from '../components/Map';
 import ShopCard from '../components/ShopCard';
 import { LocationContext } from '../hooks/useLocationContext';
-import { IPosition } from '../models/location';
+import { IBounds, IPosition } from '../models/location';
 
 function Home () {
-  const [position, setPosition] = useState<IPosition | null>(null)
+  const [position, setPosition] = useState<IPosition | null>(null);
+  const [locationName, setLocationName] = useState('');
+  const [bounds, setBounds] = useState<IBounds | null>(null);
   const [shops] = useState([
     {
       id: 123,
@@ -43,8 +45,21 @@ function Home () {
     }
   ]);
 
+  useEffect(() => {
+    if (locationName !== '') {
+      let location = locationName.split(',');
+      setLocationName(location[0]);
+    }
+    console.log("location: ", locationName);
+    console.log("position", position);
+  }, [locationName, position]);
+
   return (
-    <LocationContext.Provider value= {{ position, setPosition }}>
+    <LocationContext.Provider value= {{ 
+      position, setPosition,
+      locationName, setLocationName,
+      bounds, setBounds
+    }}>
       <Header />
       <main className="home">
         <article className="shops">

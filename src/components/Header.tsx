@@ -12,8 +12,9 @@ function Header() {
 
   async function getLocation() {
     const results = await provider.search({ query: location });
-    // console.log(results); // » [{}, {}, {}, ...]
-    locationContext.setPosition({lon: results[0].x, lat: results[0].y});
+    // console.log(results);
+    locationContext.setLocationName(results[0].label);
+    locationContext.setPosition({lng: results[0].x, lat: results[0].y});
   }
 
   function handleKeyDown(e:KeyboardEvent) {
