@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Marker, Popup, useMap } from 'react-leaflet';
-import { IPosition } from '../models/location';
+import { IPosition } from '../../models/location';
 // import cameraIcon from '../images/photo-camera.png'
 
 interface IProps {

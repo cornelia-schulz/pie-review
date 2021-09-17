@@ -1,0 +1,26 @@
+@import '../../styles/colours.scss';
+
+.home {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leaflet-container {
+  display: none;
+}
+  
+.shops {
+  padding: 2rem;
+}
+
+@media (min-width: 1128px) {
+  .shops {
+    max-width: 84rem;
+    min-width: 54.7rem;
+  }
+
+  .leaflet-container {
+    display: block;
+    flex-grow: 1;
+  }
+}

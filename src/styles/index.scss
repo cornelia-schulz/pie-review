@@ -71,59 +71,12 @@ input {
   min-width: 30rem;
 }
 
-.header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 1.5rem;
-  width: 100%;
-}
-
-.logo {
-  height: 8rem;
-}
-
-.searchbar {
-  display: flex;
-  align-items: center;
-
-  .button {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-  }
-
-  .searchbar-input {
-    background-color: $cream;
-    border: 0.1rem solid $cream;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    padding-left: 1rem;
-
-    &:focus, &:focus-visible {
-      border-color: $dark-cyan;
-      outline: none;
-    }
-  }
-}
-
-#mapid, .leaflet-container {
+.leaflet-container {
   height: calc(100vh - 100px);
   width: 100vw;
 }
 
-.home {
-  display: flex;
-  justify-content: space-between;
-}
 
-.leaflet-container {
-  flex-basis: 40%;
-}
-
-.shops {
-  flex-grow: 1;
-  padding: 2rem;
-}
 
 .shop-card {
   border-bottom: 1px solid rgba($dark-cyan, 0.2);

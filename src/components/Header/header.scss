@@ -1,0 +1,36 @@
+@import '../../styles/colours.scss';
+
+.header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    width: 100%;
+  }
+  
+  .logo {
+    height: 8rem;
+  }
+  
+  .searchbar {
+    display: flex;
+    align-items: center;
+  
+    .button {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+  
+    .searchbar-input {
+      background-color: $cream;
+      border: 0.1rem solid $cream;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-left: 1rem;
+  
+      &:focus, &:focus-visible {
+        border-color: $dark-cyan;
+        outline: none;
+      }
+    }
+  }

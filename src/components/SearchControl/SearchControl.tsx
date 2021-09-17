@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 import { GeoSearchControl } from 'leaflet-geosearch';
 import { OpenStreetMapProvider } from 'react-leaflet-geosearch';
-import { ISearch } from '../models/search';
+import { ISearch } from '../../models/search';
 
 const SearchControl = (search: ISearch) => {
   const provider = OpenStreetMapProvider();

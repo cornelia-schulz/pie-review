@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Marker, useMap } from 'react-leaflet';
-import { useLocationContext } from '../hooks/useLocationContext';
-import { IPosition } from '../models/location';
+import { useLocationContext } from '../../hooks/useLocationContext';
+import { IPosition } from '../../models/location';
 
 function LocationResolver() {
   const [position, setPosition] = useState<IPosition | null>({lat: -43.5258654860019, lng: 172.61722095547762});

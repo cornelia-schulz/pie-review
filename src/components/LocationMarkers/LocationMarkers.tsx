@@ -1,5 +1,5 @@
-import LocationMarker from './LocationMarker';
-import { IShop } from '../models/shops';
+import LocationMarker from '../LocationMarker/LocationMarker';
+import { IShop } from '../../models/shops';
 
 interface IProps {
   shops: IShop[]

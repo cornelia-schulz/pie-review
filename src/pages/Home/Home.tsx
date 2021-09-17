@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Map from '../components/Map';
-import ShopCard from '../components/ShopCard';
-import { LocationContext } from '../hooks/useLocationContext';
-import { IBounds, IPosition } from '../models/location';
+import './home.scss';
+import Header from '../../components/Header/Header';
+import Map from '../../components/Map/Map';
+import ShopCard from '../../components/ShopCard/ShopCard';
+import { LocationContext } from '../../hooks/useLocationContext';
+import { IBounds, IPosition } from '../../models/location';
 
 function Home () {
   const [position, setPosition] = useState<IPosition | null>(null);

@@ -1,4 +1,4 @@
-import { IShop } from '../models/shops';
+import { IShop } from '../../models/shops';
 
 function ShopCard(shop: IShop) {
   return (

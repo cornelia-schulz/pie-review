@@ -1,8 +1,8 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
-import LocationMarkers from './LocationMarkers';
-import SearchControl from './SearchControl';
-import LocationResolver from './LocationResolver';
-import { IShop } from '../models/shops';
+import LocationMarkers from '../LocationMarkers/LocationMarkers';
+import SearchControl from '../SearchControl/SearchControl';
+import LocationResolver from '../LocationResolver/LocationResolver';
+import { IShop } from '../../models/shops';
 
 interface IProps {
   shops: IShop[]
@@ -11,7 +11,7 @@ interface IProps {
 function Map(props: IProps) {
   return (
     <MapContainer
-    center={{lat: -43.5258654860019, lng: 172.61722095547762}}
+      center={{lat: -43.5258654860019, lng: 172.61722095547762}}
       zoom={11} scrollWheelZoom={false}
     >
       <TileLayer
