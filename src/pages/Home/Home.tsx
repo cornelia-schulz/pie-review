@@ -10,6 +10,8 @@ function Home () {
   const [position, setPosition] = useState<IPosition | null>(null);
   const [locationName, setLocationName] = useState('');
   const [bounds, setBounds] = useState<IBounds | null>(null);
+  const [showMap, setShowMap] = useState(false);
+  const [buttonText, setButtonText] = useState('Show Map');
   const [shops] = useState([
     {
       id: 123,
@@ -55,6 +57,17 @@ function Home () {
     console.log("position", position);
   }, [locationName, position]);
 
+  const toggleMap = () => {
+    if (!showMap) {
+      setShowMap(true);
+      setButtonText('Show List');
+    }
+    else {
+      setShowMap(false);
+      setButtonText('Show Map');
+    }
+  }
+
   return (
     <LocationContext.Provider value= {{ 
       position, setPosition,
@@ -79,6 +92,10 @@ function Home () {
           )}
         </article>
         <Map shops={shops} />
+        <button
+          className="button-slim toggle-map-button"
+          onClick={toggleMap}>{buttonText}
+        </button>
       </main>
     </LocationContext.Provider>
   )

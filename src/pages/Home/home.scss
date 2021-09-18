@@ -3,6 +3,7 @@
 .home {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .leaflet-container {
@@ -11,12 +12,24 @@
   
 .shops {
   padding: 2rem;
+  width: 100%;
+}
+
+.toggle-map-button {
+  bottom: 1rem;
+  left: 50%;
+  right: 50%;
+  padding: 0 2rem;
+  position: absolute;
+  white-space: nowrap;
+  z-index: 1000;
 }
 
 @media (min-width: 1128px) {
   .shops {
     max-width: 84rem;
     min-width: 54.7rem;
+    width: auto;
   }
 
   .leaflet-container {

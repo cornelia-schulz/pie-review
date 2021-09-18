@@ -56,12 +56,16 @@ h4 {
   overflow: hidden;
 }
 
-.button {
+.button, .button-slim {
   background-color: $dark-cyan;
   border: none;
   border-radius: 1.5rem;
   color: $light-cream;
   height: 5.6rem;
+}
+
+.button-slim {
+  height: 4rem;
 }
 
 input {
