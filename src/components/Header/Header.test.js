@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Header from './Header';
 
 test('renders Header component', () => {
@@ -6,4 +6,13 @@ test('renders Header component', () => {
   expect(screen.getByAltText('pie review logo')).toBeInTheDocument();
   // screen.debug();
   expect(screen.getByRole('textbox')).toBeInTheDocument();
+
+  fireEvent.click(screen.getByRole('button'), {
+    target: { value: 'JavaScript'}
+  });
+
+  fireEvent.change(screen.getByRole('textbox'), {
+    target: { value: 'JavaScript'}
+  })
+  // screen.debug();
 });
