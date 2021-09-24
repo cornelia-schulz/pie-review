@@ -35,7 +35,7 @@ function Header() {
           onKeyDown={handleKeyDown}
           type="text"
         />
-        <button className="button" onClick={getLocation}>
+        <button className="button" onClick={getLocation} onKeyDown={handleKeyDown}>
           <img src={magnifier} alt="search for location" />
         </button>
       </div>

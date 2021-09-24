@@ -6,6 +6,7 @@ html {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 62.5%;
+  height: 100%;
 }
 
 *, *:before, *:after {
@@ -21,6 +22,7 @@ body {
   font-size: 1.6rem;
   letter-spacing: 0;
   line-height: 2.6rem;
+  min-height: 100%;
 }
 
 h1 {
@@ -75,12 +77,14 @@ input {
   min-width: 30rem;
 }
 
-.leaflet-container {
-  height: calc(100vh - 100px);
-  width: 100vw;
+#root {
+  min-height: 100vh;
 }
 
-
+.leaflet-container {
+  height: calc(100vh - 196px);
+  width: 100vw;
+}
 
 .shop-card {
   border-bottom: 1px solid rgba($dark-cyan, 0.2);
@@ -88,4 +92,10 @@ input {
   margin-top: 1rem;
   padding: 1rem 0;
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .leaflet-container {
+    height: calc(100vh - 100px);
+  }
 }

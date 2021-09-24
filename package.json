@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --detectOpenHandles",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,6 +40,8 @@
   ],
   "devDependencies": {
     "@types/react-router-dom": "^5.1.8",
+    "eslint-plugin-jest-dom": "^3.9.2",
+    "eslint-plugin-testing-library": "^4.12.3",
     "node-sass": "5.0.0"
   }
 }

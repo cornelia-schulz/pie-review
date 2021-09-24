@@ -2,6 +2,7 @@
 
 .home {
   display: flex;
+  min-height: calc(100vh - 196px);
   justify-content: space-between;
   position: relative;
 }
@@ -17,12 +18,18 @@
 
 .toggle-map-button {
   bottom: 1rem;
-  left: 50%;
+  left: 42%;
   right: 50%;
   padding: 0 2rem;
   position: absolute;
   white-space: nowrap;
   z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .home {
+    min-height: calc(100vh - 100px);
+  }
 }
 
 @media (min-width: 1128px) {
