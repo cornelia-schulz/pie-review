@@ -5,12 +5,14 @@ import Map from '../../components/Map/Map';
 import ShopCard from '../../components/ShopCard/ShopCard';
 import { LocationContext } from '../../hooks/useLocationContext';
 import { IBounds, IPosition } from '../../models/location';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 function Home () {
   const [position, setPosition] = useState<IPosition | null>(null);
   const [locationName, setLocationName] = useState('');
   const [bounds, setBounds] = useState<IBounds | null>(null);
-  const [showMap, setShowMap] = useState(false);
+  const {windowWidth} = useWindowDimensions();
+  const [showMap, setShowMap] = useState('list');
   const [buttonText, setButtonText] = useState('Show Map');
   const [shops] = useState([
     {
@@ -53,18 +55,19 @@ function Home () {
       let location = locationName.split(',');
       setLocationName(location[0]);
     }
-    console.log("location: ", locationName);
-    console.log("position", position);
-  }, [locationName, position]);
+  }, [locationName, position, windowWidth]);
 
   const toggleMap = () => {
-    if (!showMap) {
-      setShowMap(true);
+    console.log("toggle map", showMap);
+    if (showMap === 'list') {
+      setShowMap('map');
       setButtonText('Show List');
+      console.log({showMap});
     }
     else {
-      setShowMap(false);
+      setShowMap('list');
       setButtonText('Show Map');
+      console.log({showMap});
     }
   }
 
@@ -76,7 +79,7 @@ function Home () {
     }}>
       <Header />
       <main className="home">
-        <article className="shops">
+        <article className="shops desktop">
           {shops && shops.map((shop, index) => 
             <ShopCard 
               id={shop.id}
@@ -91,9 +94,26 @@ function Home () {
             />
           )}
         </article>
-        <Map shops={shops} />
+        <Map isMobile={false} shops={shops} />
+
+        {showMap === 'list' && <article className="shops mobile">
+          {shops && shops.map((shop, index) => 
+            <ShopCard 
+              id={shop.id}
+              name={shop.name}
+              street={shop.street}
+              key={index}
+              city={shop.city}
+              county={shop.county}
+              country={shop.country}
+              longitude={shop.longitude}
+              latitude={shop.latitude}
+            />
+          )}
+        </article>}
+        {showMap === 'map' && <Map isMobile={true} shops={shops} />}
         <button
-          className="button-slim toggle-map-button"
+          className="button-slim toggle-map-button mobile"
           onClick={toggleMap}>{buttonText}
         </button>
       </main>

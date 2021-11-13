@@ -6,10 +6,6 @@
   justify-content: space-between;
   position: relative;
 }
-
-.leaflet-container {
-  display: none;
-}
   
 .shops {
   padding: 2rem;
@@ -40,7 +36,6 @@
   }
 
   .leaflet-container {
-    display: block;
     flex-grow: 1;
   }
 }

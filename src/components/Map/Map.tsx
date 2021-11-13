@@ -5,13 +5,15 @@ import LocationResolver from '../LocationResolver/LocationResolver';
 import { IShop } from '../../models/shops';
 
 interface IProps {
-  shops: IShop[]
+  shops: IShop[],
+  isMobile: Boolean
 }
 
 function Map(props: IProps) {
   return (
     <MapContainer
       center={{lat: -43.5258654860019, lng: 172.61722095547762}}
+      className={props.isMobile ? 'mobile' : 'desktop'}
       zoom={11} scrollWheelZoom={false}
     >
       <TileLayer

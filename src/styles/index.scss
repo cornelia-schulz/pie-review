@@ -58,6 +58,10 @@ h4 {
   overflow: hidden;
 }
 
+.desktop {
+  display: none;
+}
+
 .button, .button-slim {
   background-color: $dark-cyan;
   border: none;
@@ -97,5 +101,14 @@ input {
 @media (min-width: 768px) {
   .leaflet-container {
     height: calc(100vh - 100px);
+  }
+}
+
+@media (min-width: 1080px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
   }
 }
