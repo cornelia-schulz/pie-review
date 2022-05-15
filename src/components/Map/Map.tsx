@@ -10,11 +10,14 @@ interface IProps {
 }
 
 function Map(props: IProps) {
+  
+
+  
   return (
     <MapContainer
       center={{lat: -43.5258654860019, lng: 172.61722095547762}}
       className={props.isMobile ? 'mobile' : 'desktop'}
-      zoom={11} scrollWheelZoom={false}
+      zoom={12} scrollWheelZoom={false}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

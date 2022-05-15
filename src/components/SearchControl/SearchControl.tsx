@@ -15,7 +15,7 @@ const SearchControl = (search: ISearch) => {
       ...search,
     })
   
-      map.addControl(searchControl)
+      // map.addControl(searchControl)
       return () => map.removeControl(searchControl)
     }, [provider, map, search])
   
