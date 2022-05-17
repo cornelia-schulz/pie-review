@@ -11,7 +11,7 @@ function Header() {
   const [placeholder] = useState('Enter a city or town');
   const provider = new OpenStreetMapProvider();
 
-  async function getLocation() {
+  async function updateLocation() {
     if (location) {
       const results = await provider.search({ query: location });
       let tempLocation = results[0].label.split(',')
@@ -26,7 +26,7 @@ function Header() {
 
   function handleKeyDown(e:KeyboardEvent) {
     if (e.key === 'Enter') {
-      getLocation();
+      updateLocation();
     }
   }
 
@@ -45,7 +45,7 @@ function Header() {
           placeholder={placeholder}
           type="text"
         />
-        <button className="search-button" onClick={getLocation} onKeyDown={handleKeyDown}>
+        <button className="search-button" onClick={updateLocation} onKeyDown={handleKeyDown}>
           <img src={magnifier} alt="search for location" />
         </button>
       </div>

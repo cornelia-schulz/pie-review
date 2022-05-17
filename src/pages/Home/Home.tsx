@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './home.scss';
 import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
 import ShopCard from '../../components/ShopCard/ShopCard';
-// import { useLocationContext } from '../../hooks/useLocationContext';
-// import { IBounds, IPosition } from '../../models/location';
-// import useWindowDimensions from '../../hooks/useWindowDimensions';
+import { useLocationContext } from '../../hooks/useLocationContext';
 
 function Home () {
-  // const locationContext = useLocationContext();
-  // const [position] = useState<IPosition | null>(null);
-  // const [locationName, setLocationName] = useState('');
-  // const [bounds, setBounds] = useState<IBounds | null>(null);
-  // const {windowWidth} = useWindowDimensions();
+  const locationContext = useLocationContext();
   const [showMap, setShowMap] = useState('list');
   const [buttonText, setButtonText] = useState('Show Map');
   const [shops] = useState([
@@ -51,14 +45,9 @@ function Home () {
     }
   ]);
 
-  // useEffect(() => {
-  //   // debugger
-  //   setBounds(locationContext.bounds)
-  //   console.log('bounds:', bounds, locationContext.position)
-  //   if (locationName !== '') {
-  //     setLocationName(locationName);
-  //   }
-  // }, [bounds, locationContext, locationName, position, windowWidth]);
+  useEffect(() => {
+    console.log('home', locationContext)
+  }, [locationContext, locationContext.bounds]);
 
   const toggleMap = () => {
     console.log("toggle map", showMap);
