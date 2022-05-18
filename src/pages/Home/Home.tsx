@@ -4,11 +4,13 @@ import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
 import ShopCard from '../../components/ShopCard/ShopCard';
 import { useLocationContext } from '../../hooks/useLocationContext';
+import { IShops } from '../../models/shops';
 
 function Home () {
   const locationContext = useLocationContext();
   const [showMap, setShowMap] = useState('list');
   const [buttonText, setButtonText] = useState('Show Map');
+  const [filteredShops, setFilteredShops] = useState<IShops | null>();
   const [shops] = useState([
     {
       id: 123,
@@ -17,7 +19,7 @@ function Home () {
       street: '290 Selwyn St',
       county: 'Canterbury',
       country: 'New Zealand',
-      latitude: -43.549126911758606,
+      latitude: -43.529126911758606,
       longitude: 172.62206744255727,
       pies: []
     },
@@ -44,9 +46,9 @@ function Home () {
       pies: []
     }
   ]);
-
   useEffect(() => {
     console.log('home', locationContext)
+    filterShops();
   }, [locationContext, locationContext.bounds]);
 
   const toggleMap = () => {
@@ -61,12 +63,23 @@ function Home () {
     }
   }
 
+  const filterShops = () => {
+    if (locationContext.bounds != null) {
+      debugger
+      const result = shops.filter(shop => shop.latitude >= locationContext.bounds!._southWest.lat && 
+                                          shop.latitude <= locationContext.bounds!._northEast.lat && 
+                                          shop.longitude >= locationContext.bounds!._southWest.lng && 
+                                          shop.longitude <= locationContext.bounds!._northEast.lng);
+      setFilteredShops(result);
+    }
+  }
+
   return (
     <React.Fragment>
       <Header />
       <main className="home">
           <article className="shops desktop">
-            {shops && shops.map((shop, index) => 
+            {filteredShops && filteredShops.map((shop, index) => 
               <ShopCard 
                 id={shop.id}
                 name={shop.name}
@@ -84,7 +97,7 @@ function Home () {
         <Map isMobile={false} shops={shops} />
 
         {showMap === 'list' && <article className="shops mobile">
-          {shops && shops.map((shop, index) => 
+          {filteredShops && filteredShops.map((shop, index) => 
             <ShopCard 
               id={shop.id}
               name={shop.name}

@@ -8,3 +8,5 @@ export interface IShop {
   longitude: number,
   latitude: number
 }
+
+export interface IShops extends Array<IShop>{}

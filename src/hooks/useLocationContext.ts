@@ -15,7 +15,16 @@ export const LocationContext = createContext<LocationContent>({
   setLocationName: (l: string) => {},
   position: {lat: -43.5258654860019, lng: 172.61722095547762},
   setPosition: (p: IPosition | null) => {},
-  bounds: null,
+  bounds: {
+    _northEast: {
+      lat: -43.4551619366977,
+      lng: 172.68791198730472
+    },
+    _southWest: {
+      lat: -43.60649929007941,
+      lng: 172.58525848388675
+    }
+  },
   setBounds: (b: IBounds | null) => {}
 });
 

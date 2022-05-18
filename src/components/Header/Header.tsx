@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 import './header.scss';
 import logo from '../../assets/pie-cyan-logo.png';
 import magnifier from '../../assets/magnifying-glass-cream.png';
@@ -10,6 +10,10 @@ function Header() {
   const locationContext = useLocationContext();
   const [placeholder] = useState('Enter a city or town');
   const provider = new OpenStreetMapProvider();
+
+  useEffect(() => {
+
+  })
 
   async function updateLocation() {
     if (location) {

@@ -24,6 +24,7 @@ function LocationResolver() {
   function updateBounds() {
     let bounds = map.getBounds();
       if (bounds) {
+        debugger;
         locationContext.setBounds({
           _northEast: {lat: bounds._northEast.lat, lng: bounds._northEast.lng},
           _southWest: {lat: bounds._southWest.lat, lng: bounds._southWest.lng}
