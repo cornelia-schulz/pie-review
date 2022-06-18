@@ -1,7 +1,7 @@
 import { LeafletEvent, LatLngTuple } from 'leaflet'
 import { useEffect, useState } from 'react'
 import { Marker, Popup, useMap } from 'react-leaflet'
-// import cameraIcon from '../images/photo-camera.png'
+import pin from '../../assets/pie_pin.png'
 
 interface IProps {
   id: number
@@ -16,17 +16,11 @@ interface IProps {
 
 function LocationMarker(props: IProps) {
   const [position, setPosition] = useState<LatLngTuple | null>(null)
-  // const L = require('leaflet');
-  //let position = {lat:  30, lng: 50}
-  //   const cameraImageIcon = L.icon({
-  //     iconUrl: cameraIcon,
-  //     iconSize: [33,32],
-  //     iconAnchor: [0, 0],
-  //     popupAnchor: [16, 0],
-  //     shadowUrl: null,
-  //     shadowSize: null,
-  //     shadowAnchor: null
-  //   })
+  const L = require('leaflet')
+  const markerIcon = new L.Icon({
+    iconUrl: pin,
+    iconSize: [45, 44]
+  })
   const map = useMap()
 
   useEffect(() => {
@@ -37,8 +31,7 @@ function LocationMarker(props: IProps) {
   }, [props.latitude, props.longitude, map])
 
   return position === null ? null : (
-    // <Marker position={position} icon={cameraImageIcon}>
-    <Marker position={position}>
+    <Marker position={position} icon={markerIcon} >
       <Popup>
         <h2>{props.name}</h2>
         <h3>{props.street}</h3>
