@@ -4,8 +4,8 @@ import { LocationContext } from './hooks/useLocationContext';
 import Home from './pages/Home/Home';
 
 function App() {
-  const [position, setPosition] = useState(null);
-  const [locationName, setLocationName] = useState('');
+  const [position, setPosition] = useState({lat: -43.5258654860019, lng: 172.61722095547762});
+  const [locationName, setLocationName] = useState('Christchurch');
   const [bounds, setBounds] = useState(null);
 
   return (

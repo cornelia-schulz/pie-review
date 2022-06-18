@@ -2,13 +2,13 @@ import LocationMarker from '../LocationMarker/LocationMarker';
 import { IShop } from '../../models/shops';
 
 interface IProps {
-  shops: IShop[]
+  shops: IShop[] | null
 }
 
 function LocationMarkers(props: IProps) {
   return (
     <>
-      {props.shops.map((shop, index) =>
+      {props.shops && props.shops.map((shop, index) =>
         <LocationMarker
           id={shop.id}
           name={shop.name}

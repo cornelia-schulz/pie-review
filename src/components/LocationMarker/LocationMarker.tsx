@@ -16,6 +16,7 @@ interface IProps {
 
 function LocationMarker(props:IProps) {
   const [position, setPosition] = useState<IPosition | null>(null);
+  const pos = [props.latitude, props.longitude]
   // const L = require('leaflet');
   //let position = {lat:  30, lng: 50}
 //   const cameraImageIcon = L.icon({
@@ -37,11 +38,12 @@ function LocationMarker(props:IProps) {
       }
       setPosition(latlng)
     })
+    console.log('marker', props.name, props.latitude, props.longitude)
   }, [props.latitude, props.longitude, map])
 
   return position === null ? null : (
     // <Marker position={position} icon={cameraImageIcon}>
-    <Marker position={position}>
+    <Marker position={pos}>
       <Popup>
         <h2>{props.name}</h2>
         <h3>{props.street}</h3>

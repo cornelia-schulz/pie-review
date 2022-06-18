@@ -5,7 +5,7 @@ import LocationResolver from '../LocationResolver/LocationResolver';
 import { IShop } from '../../models/shops';
 
 interface IProps {
-  shops: IShop[],
+  shops: IShop[] | null,
   isMobile: Boolean
 }
 
