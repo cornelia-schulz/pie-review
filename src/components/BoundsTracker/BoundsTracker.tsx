@@ -1,4 +1,4 @@
-import { useMapEvents } from 'react-leaflet';
+import { useMapEvents } from 'react-leaflet'
 
 interface IProps {
   setBounds: any
@@ -6,12 +6,12 @@ interface IProps {
 
 function BoundsTracker(props: IProps) {
   const map = useMapEvents({
-    moveend(){
+    moveend() {
       console.log('moveend yo ', map.getBounds())
       props.setBounds(map.getBounds())
-    }
+    },
   })
-  return null;
+  return null
 }
 
-export default BoundsTracker;
+export default BoundsTracker

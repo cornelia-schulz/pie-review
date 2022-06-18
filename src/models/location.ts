@@ -13,3 +13,4 @@ export interface IBounds {
   _northEast: IPosition,
   _southWest: IPosition
 }
+

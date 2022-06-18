@@ -12,68 +12,66 @@ function Home() {
   const [buttonText, setButtonText] = useState('Show Map')
   const [filteredShops, setFilteredShops] = useState<IShop[] | null>([])
   const [isLoaded, setIsLoaded] = useState(false)
-  // const [users, setUsers] = useState([]);
   const [error, setError] = useState(null)
-  const [shops, setShops] = useState<IShop[]>([
-    // {
-    //   id: 123,
-    //   name: 'Pies and Coffee',
-    //   city: 'Christchurch',
-    //   street: '290 Selwyn St',
-    //   county: 'Canterbury',
-    //   country: 'New Zealand',
-    //   latitude: -43.529126911758606,
-    //   longitude: 172.62206744255727,
-    //   pies: []
-    // },
-    // {
-    //   id: 124,
-    //   name: 'The great pastry shop',
-    //   city: 'Christchurch',
-    //   street: 'Riverside Market',
-    //   county: 'Canterbury',
-    //   country: 'New Zealand',
-    //   latitude: -43.533927237712405,
-    //   longitude: 172.63397647139195,
-    //   pies: []
-    // },
-    // {
-    //   id: 125,
-    //   name: 'Copenhagen Bakery',
-    //   city: 'Christchurch',
-    //   street: '409 Harewood Rd',
-    //   county: 'Canterbury',
-    //   country: 'New Zealand',
-    //   latitude: -43.484311485809485,
-    //   longitude: 172.57846588303863,
-    //   pies: []
-    // },
-    // {
-    //   id: 126,
-    //   name: 'The Pie Tin Newtown',
-    //   city: 'Sydney',
-    //   street: '1a Brown St',
-    //   county: 'NSW',
-    //   country: 'Australia',
-    //   latitude: -33.89518531945312,
-    //   longitude: 151.18240158394033,
-    //   pies: []
-    // },
-    // {
-    //   id: 127,
-    //   name: 'The House of Pie',
-    //   city: 'Sydney',
-    //   street: '540 Bunnerong Road',
-    //   county: 'NSW',
-    //   country: 'Australia',
-    //   latitude: -33.959505303896556,
-    //   longitude: 151.23099792627124,
-    //   pies: []
-    // }
-  ])
+  // const [shops, setShops] = useState<IShop[]>([
+  //   {
+  //     id: 123,
+  //     name: 'Pies and Coffee',
+  //     city: 'Christchurch',
+  //     street: '290 Selwyn St',
+  //     county: 'Canterbury',
+  //     country: 'New Zealand',
+  //     latitude: -43.529126911758606,
+  //     longitude: 172.62206744255727,
+  //     pies: []
+  //   },
+  //   {
+  //     id: 124,
+  //     name: 'The great pastry shop',
+  //     city: 'Christchurch',
+  //     street: 'Riverside Market',
+  //     county: 'Canterbury',
+  //     country: 'New Zealand',
+  //     latitude: -43.533927237712405,
+  //     longitude: 172.63397647139195,
+  //     pies: []
+  //   },
+  //   {
+  //     id: 125,
+  //     name: 'Copenhagen Bakery',
+  //     city: 'Christchurch',
+  //     street: '409 Harewood Rd',
+  //     county: 'Canterbury',
+  //     country: 'New Zealand',
+  //     latitude: -43.484311485809485,
+  //     longitude: 172.57846588303863,
+  //     pies: []
+  //   },
+  //   {
+  //     id: 126,
+  //     name: 'The Pie Tin Newtown',
+  //     city: 'Sydney',
+  //     street: '1a Brown St',
+  //     county: 'NSW',
+  //     country: 'Australia',
+  //     latitude: -33.89518531945312,
+  //     longitude: 151.18240158394033,
+  //     pies: []
+  //   },
+  //   {
+  //     id: 127,
+  //     name: 'The House of Pie',
+  //     city: 'Sydney',
+  //     street: '540 Bunnerong Road',
+  //     county: 'NSW',
+  //     country: 'Australia',
+  //     latitude: -33.959505303896556,
+  //     longitude: 151.23099792627124,
+  //     pies: []
+  //   }
+  // ])
 
   const toggleMap = () => {
-    // console.log('toggle map', showMap)
     if (showMap === 'list') {
       setShowMap('map')
       setButtonText('Show List')
@@ -83,23 +81,8 @@ function Home() {
     }
   }
 
-  const filterShops = () => {
-    const result = shops.filter(
-      (shop) =>
-        shop.latitude >= locationContext.bounds!._southWest.lat &&
-        shop.latitude <= locationContext.bounds!._northEast.lat &&
-        shop.longitude >= locationContext.bounds!._southWest.lng &&
-        shop.longitude <= locationContext.bounds!._northEast.lng,
-    )
-    setFilteredShops(shops)
-    // console.log('home filteredshops:', filteredShops)
-  }
-
   useEffect(() => {
     if (locationContext.bounds !== null) {
-
-      //       _northEast: {lat: -43.44818330704061, lng: 172.78987884521487}
-      // _southWest: {lat: -43.613459626278306, lng: 172.4832916259766}
       let ne = locationContext.bounds._northEast
       let sw = locationContext.bounds._southWest
       fetch(
@@ -114,20 +97,18 @@ function Home() {
         .then(
           (data) => {
             setIsLoaded(true)
-            setShops(data)
             setFilteredShops(data)
             console.log('filtered shops', data)
           },
           (error) => {
             setIsLoaded(true)
             setError(error)
+            console.error(error)
           },
         )
     } else {
       console.log('no bounds')
     }
-
-    // console.log('Home Users: ', shops, isLoaded)
   }, [locationContext, locationContext.bounds, locationContext.position])
 
   return (

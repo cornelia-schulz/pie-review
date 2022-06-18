@@ -1,5 +1,5 @@
-import LocationMarker from '../LocationMarker/LocationMarker';
-import { IShop } from '../../models/shops';
+import LocationMarker from '../LocationMarker/LocationMarker'
+import { IShop } from '../../models/shops'
 
 interface IProps {
   shops: IShop[] | null
@@ -8,19 +8,20 @@ interface IProps {
 function LocationMarkers(props: IProps) {
   return (
     <>
-      {props.shops && props.shops.map((shop, index) =>
-        <LocationMarker
-          id={shop.id}
-          name={shop.name}
-          street={shop.street}
-          key={index}
-          city={shop.city}
-          county={shop.county}
-          country={shop.country}
-          longitude={shop.longitude}
-          latitude={shop.latitude}
-        />
-      )}
+      {props.shops &&
+        props.shops.map((shop, index) => (
+          <LocationMarker
+            id={shop.id}
+            name={shop.name}
+            street={shop.street}
+            key={index}
+            city={shop.city}
+            county={shop.county}
+            country={shop.country}
+            longitude={shop.longitude}
+            latitude={shop.latitude}
+          />
+        ))}
     </>
   )
 }
