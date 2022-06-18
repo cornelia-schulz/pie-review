@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Marker, useMap } from 'react-leaflet';
 import { useLocationContext } from '../../hooks/useLocationContext';
 import BoundsTracker from '../BoundsTracker/BoundsTracker';
@@ -24,7 +24,7 @@ function LocationResolver() {
   function updateBounds() {
     let bounds = map.getBounds();
       if (bounds) {
-        //debugger;
+        // debugger;
         locationContext.setBounds({
           _northEast: {lat: bounds._northEast.lat, lng: bounds._northEast.lng},
           _southWest: {lat: bounds._southWest.lat, lng: bounds._southWest.lng}

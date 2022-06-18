@@ -41,6 +41,7 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.8",
     "eslint-plugin-jest-dom": "^3.9.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-testing-library": "^4.12.3",
     "node-sass": "5.0.0"
   }

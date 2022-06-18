@@ -38,7 +38,6 @@ function LocationMarker(props:IProps) {
       }
       setPosition(latlng)
     })
-    console.log('marker', props.name, props.latitude, props.longitude)
   }, [props.latitude, props.longitude, map])
 
   return position === null ? null : (
