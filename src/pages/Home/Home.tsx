@@ -5,71 +5,48 @@ import Map from '../../components/Map/Map'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import { useLocationContext } from '../../hooks/useLocationContext'
 import { IShop } from '../../models/shops'
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 
 function Home() {
   const locationContext = useLocationContext()
   const [showMap, setShowMap] = useState('list')
   const [buttonText, setButtonText] = useState('Show Map')
   const [filteredShops, setFilteredShops] = useState<IShop[] | null>([])
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
-  // const [shops, setShops] = useState<IShop[]>([
-  //   {
-  //     id: 123,
-  //     name: 'Pies and Coffee',
-  //     city: 'Christchurch',
-  //     street: '290 Selwyn St',
-  //     county: 'Canterbury',
-  //     country: 'New Zealand',
-  //     latitude: -43.529126911758606,
-  //     longitude: 172.62206744255727,
-  //     pies: []
-  //   },
-  //   {
-  //     id: 124,
-  //     name: 'The great pastry shop',
-  //     city: 'Christchurch',
-  //     street: 'Riverside Market',
-  //     county: 'Canterbury',
-  //     country: 'New Zealand',
-  //     latitude: -43.533927237712405,
-  //     longitude: 172.63397647139195,
-  //     pies: []
-  //   },
-  //   {
-  //     id: 125,
-  //     name: 'Copenhagen Bakery',
-  //     city: 'Christchurch',
-  //     street: '409 Harewood Rd',
-  //     county: 'Canterbury',
-  //     country: 'New Zealand',
-  //     latitude: -43.484311485809485,
-  //     longitude: 172.57846588303863,
-  //     pies: []
-  //   },
-  //   {
-  //     id: 126,
-  //     name: 'The Pie Tin Newtown',
-  //     city: 'Sydney',
-  //     street: '1a Brown St',
-  //     county: 'NSW',
-  //     country: 'Australia',
-  //     latitude: -33.89518531945312,
-  //     longitude: 151.18240158394033,
-  //     pies: []
-  //   },
-  //   {
-  //     id: 127,
-  //     name: 'The House of Pie',
-  //     city: 'Sydney',
-  //     street: '540 Bunnerong Road',
-  //     county: 'NSW',
-  //     country: 'Australia',
-  //     latitude: -33.959505303896556,
-  //     longitude: 151.23099792627124,
-  //     pies: []
-  //   }
-  // ])
+  const [shopAvailability, setShopAvailability] = useState('')
+  const [shops] = useState<IShop[]>([
+    {
+      id: 123,
+      name: 'Pies and Coffee',
+      city: 'Christchurch',
+      street: '290 Selwyn St',
+      county: 'Canterbury',
+      country: 'New Zealand',
+      latitude: -43.529126911758606,
+      longitude: 172.62206744255727,
+    },
+    {
+      id: 124,
+      name: 'The great pastry shop',
+      city: 'Christchurch',
+      street: 'Riverside Market',
+      county: 'Canterbury',
+      country: 'New Zealand',
+      latitude: -43.533927237712405,
+      longitude: 172.63397647139195,
+    },
+    {
+      id: 125,
+      name: 'Copenhagen Bakery',
+      city: 'Christchurch',
+      street: '409 Harewood Rd',
+      county: 'Canterbury',
+      country: 'New Zealand',
+      latitude: -43.484311485809485,
+      longitude: 172.57846588303863,
+    },
+  ])
 
   const toggleMap = () => {
     if (showMap === 'list') {
@@ -85,6 +62,8 @@ function Home() {
     if (locationContext.bounds !== null) {
       let ne = locationContext.bounds._northEast
       let sw = locationContext.bounds._southWest
+      setIsLoading(true)
+      console.log('1: ', isLoading)
       fetch(
         `https://localhost:5001/api/v1/shops?ne_lat=${ne.lat}&ne_lng=${ne.lng}&sw_lat=${sw.lat}&sw_lng=${sw.lng}`,
         {
@@ -93,17 +72,31 @@ function Home() {
           },
         },
       )
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.ok) {
+            return res.json()
+          }
+          throw new Error('Database not available')
+        })
         .then(
           (data) => {
-            setIsLoaded(true)
+            setIsLoading(false)
+            console.log(isLoading)
             setFilteredShops(data)
-            console.log('filtered shops', data)
+            if (!filteredShops || filteredShops.length === 0) {
+              setShopAvailability('Sorry, there are no pies here yet')
+            }
           },
           (error) => {
-            setIsLoaded(true)
+            setIsLoading(false)
             setError(error)
             console.error(error)
+            console.log(locationContext)
+            if (locationContext.locationName === 'Christchurch') {
+              setFilteredShops(shops)
+            } else {
+              setFilteredShops([])
+            }
           },
         )
     } else {
@@ -111,32 +104,61 @@ function Home() {
     }
   }, [locationContext, locationContext.bounds, locationContext.position])
 
+  if (filteredShops && filteredShops.length === 0 && isLoading === false) {
+    return (
+      <React.Fragment>
+      <Header />
+      <main className="home">
+        <article className="shops desktop">
+          No shops here yet
+        </article>
+        
+        <Map isMobile={false} shops={filteredShops} />
+
+        {showMap === 'list' && (
+          <article className="shops mobile">
+            No shops here yet
+          </article>
+        )}
+        {showMap === 'map' && <Map isMobile={true} shops={filteredShops} />}
+        <button
+          className="button-slim toggle-map-button mobile"
+          onClick={toggleMap}
+        >
+          {buttonText}
+        </button>
+      </main>
+    </React.Fragment>
+    )
+  } 
   return (
     <React.Fragment>
       <Header />
       <main className="home">
         <article className="shops desktop">
-          {filteredShops &&
-            filteredShops.map((shop, index) => (
-              <ShopCard
-                id={shop.id}
-                name={shop.name}
-                street={shop.street}
-                key={index}
-                city={shop.city}
-                county={shop.county}
-                country={shop.country}
-                longitude={shop.longitude}
-                latitude={shop.latitude}
-              />
-            ))}
+          {isLoading ? <LoadingSpinner /> : 
+          filteredShops &&
+            filteredShops.map((shop, index) => 
+                <ShopCard
+                    id={shop.id}
+                    name={shop.name}
+                    street={shop.street}
+                    key={index}
+                    city={shop.city}
+                    county={shop.county}
+                    country={shop.country}
+                    longitude={shop.longitude}
+                    latitude={shop.latitude}
+                  />
+            )}
         </article>
-
+        
         <Map isMobile={false} shops={filteredShops} />
 
         {showMap === 'list' && (
           <article className="shops mobile">
             {filteredShops &&
+              filteredShops.length > 0 &&
               filteredShops.map((shop, index) => (
                 <ShopCard
                   id={shop.id}

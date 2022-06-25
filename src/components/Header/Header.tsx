@@ -48,7 +48,7 @@ function Header() {
           onClick={updateLocation}
           onKeyDown={handleKeyDown}
         >
-          <img src={magnifier} alt="search for location" />
+          <img src={magnifier} alt="search for location" className="search-icon" />
         </button>
       </div>
       <nav className="navigation">{/* menu */}</nav>

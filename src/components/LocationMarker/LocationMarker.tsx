@@ -33,8 +33,8 @@ function LocationMarker(props: IProps) {
   return position === null ? null : (
     <Marker position={position} icon={markerIcon} >
       <Popup>
-        <h2>{props.name}</h2>
-        <h3>{props.street}</h3>
+        <h4>{props.name}</h4>
+        <h5>{props.street}</h5>
         <p>{props.city}</p>
       </Popup>
     </Marker>
