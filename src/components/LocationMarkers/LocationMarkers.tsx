@@ -3,6 +3,7 @@ import { IShop } from '../../models/shops'
 
 interface IProps {
   shops: IShop[] | null
+  map: any
 }
 
 function LocationMarkers(props: IProps) {
@@ -12,14 +13,16 @@ function LocationMarkers(props: IProps) {
         props.shops.map((shop, index) => (
           <LocationMarker
             id={shop.id}
+            map={props.map}
             name={shop.name}
-            street={shop.street}
+            street={shop.location.street}
             key={index}
-            city={shop.city}
-            county={shop.county}
-            country={shop.country}
-            longitude={shop.longitude}
-            latitude={shop.latitude}
+            city={shop.location.city}
+            county={shop.location.county}
+            country={shop.location.country}
+            longitude={shop.location.longitude}
+            latitude={shop.location.latitude}
+            isActive={false}
           />
         ))}
     </>

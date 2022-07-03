@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import LocationMarkers from '../LocationMarkers/LocationMarkers'
 import SearchControl from '../SearchControl/SearchControl'
@@ -10,8 +11,13 @@ interface IProps {
 }
 
 function Map(props: IProps) {
+  const [map, setMap] = useState<any>()
+
   return (
     <MapContainer
+      whenCreated={(map) => {
+        setMap(map)
+      }}
       center={{ lat: -43.5258654860019, lng: 172.61722095547762 }}
       className={props.isMobile ? 'mobile' : 'desktop'}
       zoom={12}
@@ -19,7 +25,7 @@ function Map(props: IProps) {
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <LocationResolver />
-      <LocationMarkers shops={props.shops} />
+      <LocationMarkers shops={props.shops} map={map} />
       <SearchControl
         showMarker={true}
         showPopup={false}

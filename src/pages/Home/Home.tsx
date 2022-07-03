@@ -18,33 +18,39 @@ function Home() {
   const [shops] = useState<IShop[]>([
     {
       id: 123,
-      name: 'Pies and Coffee',
-      city: 'Christchurch',
-      street: '290 Selwyn St',
-      county: 'Canterbury',
-      country: 'New Zealand',
-      latitude: -43.529126911758606,
-      longitude: 172.62206744255727,
+      name: 'Pies and Coffee $$$',
+      location: {
+        city: 'Christchurch',
+        street: '290 Selwyn St',
+        county: 'Canterbury',
+        country: 'New Zealand',
+        latitude: -43.529126911758606,
+        longitude: 172.62206744255727,
+      }
     },
     {
       id: 124,
       name: 'The great pastry shop',
-      city: 'Christchurch',
-      street: 'Riverside Market',
-      county: 'Canterbury',
-      country: 'New Zealand',
-      latitude: -43.533927237712405,
-      longitude: 172.63397647139195,
+      location: {
+        city: 'Christchurch',
+        street: 'Riverside Market',
+        county: 'Canterbury',
+        country: 'New Zealand',
+        latitude: -43.533927237712405,
+        longitude: 172.63397647139195,
+      }
     },
     {
       id: 125,
       name: 'Copenhagen Bakery',
-      city: 'Christchurch',
-      street: '409 Harewood Rd',
-      county: 'Canterbury',
-      country: 'New Zealand',
-      latitude: -43.484311485809485,
-      longitude: 172.57846588303863,
+      location: {
+        city: 'Christchurch',
+        street: '409 Harewood Rd',
+        county: 'Canterbury',
+        country: 'New Zealand',
+        latitude: -43.484311485809485,
+        longitude: 172.57846588303863,
+      }
     },
   ])
 
@@ -63,9 +69,9 @@ function Home() {
       let ne = locationContext.bounds._northEast
       let sw = locationContext.bounds._southWest
       setIsLoading(true)
-      console.log('1: ', isLoading)
       fetch(
-        `https://localhost:5001/api/v1/shops?ne_lat=${ne.lat}&ne_lng=${ne.lng}&sw_lat=${sw.lat}&sw_lng=${sw.lng}`,
+        `http://localhost:5000/api/v1/shops?ne_lat=${ne.lat}&ne_lng=${ne.lng}&sw_lat=${sw.lat}&sw_lng=${sw.lng}`,
+        // 'http://localhost:5000/api/v1/shops',
         {
           headers: {
             'Content-Type': 'application/json',
@@ -74,6 +80,7 @@ function Home() {
       )
         .then((res) => {
           if (res.ok) {
+            console.log("res.json", res.json)
             return res.json()
           }
           throw new Error('Database not available')
@@ -81,8 +88,8 @@ function Home() {
         .then(
           (data) => {
             setIsLoading(false)
-            console.log(isLoading)
-            setFilteredShops(data)
+            console.log('data: ',data)
+            setFilteredShops(data.value)
             if (!filteredShops || filteredShops.length === 0) {
               setShopAvailability('Sorry, there are no pies here yet')
             }
@@ -142,13 +149,8 @@ function Home() {
                 <ShopCard
                     id={shop.id}
                     name={shop.name}
-                    street={shop.street}
+                    location={shop.location}
                     key={index}
-                    city={shop.city}
-                    county={shop.county}
-                    country={shop.country}
-                    longitude={shop.longitude}
-                    latitude={shop.latitude}
                   />
             )}
         </article>
@@ -163,13 +165,8 @@ function Home() {
                 <ShopCard
                   id={shop.id}
                   name={shop.name}
-                  street={shop.street}
+                  location={shop.location}
                   key={index}
-                  city={shop.city}
-                  county={shop.county}
-                  country={shop.country}
-                  longitude={shop.longitude}
-                  latitude={shop.latitude}
                 />
               ))}
           </article>

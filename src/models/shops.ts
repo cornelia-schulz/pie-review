@@ -1,6 +1,12 @@
 export interface IShop {
   id: number,
   name: string,
+  location: IShopLocation
+}
+
+export interface IShops extends Array<IShop>{}
+
+export interface IShopLocation {
   street: string,
   city: string,
   county: string,
@@ -8,5 +14,3 @@ export interface IShop {
   longitude: number,
   latitude: number
 }
-
-export interface IShops extends Array<IShop>{}
